@@ -1,9 +1,13 @@
 <div id="message2">HTML content</div>
+<div id="message3">HTML</div>
 
 <div id="message"></div>
 <script>
   window.onload = function() {
     const randomNumber = Math.random()
     document.getElementById("message").innerHTML = `Random number rendered by JS: ${randomNumber}`;
+    setTimeout(function() {
+      document.getElementById("message3").innerHTML = 'delayed js content';
+    }, 5000);
   };
 </script>
