@@ -3,6 +3,7 @@
 <div id="message"></div>
 <script>
   window.onload = function() {
-    document.getElementById("message").innerHTML = "Content rendered by JS";
+    const randomNumber = Math.random()
+    document.getElementById("message").innerHTML = `Random number rendered by JS: ${randomNumber}`;
   };
 </script>
