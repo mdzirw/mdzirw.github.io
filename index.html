@@ -2,6 +2,8 @@
 <div id="message3">HTML</div>
 
 <div id="message"></div>
+<div id="posts-container">Loading...</div>
+
 <script>
   window.onload = function() {
     const randomNumber = Math.random()
@@ -10,4 +12,39 @@
       document.getElementById("message3").innerHTML = 'delayed js content';
     }, 5000);
   };
+
+  // URL of the free API endpoint
+const apiURL = 'https://jsonplaceholder.typicode.com/posts';
+
+// Function to fetch data and display it
+async function fetchPosts() {
+    try {
+        const response = await fetch(apiURL);
+
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Parse the JSON data
+        const posts = await response.json();
+
+        // Get the container element
+        const container = document.getElementById('posts-container');
+
+        // Clear initial loading text
+        container.innerHTML = '';
+
+        // Display each post title
+        posts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.textContent = `Post #${post.id}: ${post.title}`;
+            container.appendChild(postElement);
+        });
+    } catch (error) {
+        // Display error message if something goes wrong
+        document.getElementById('posts-container').textContent = `Error: ${error.message}`;
+    }
+}
+
 </script>
